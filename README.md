@@ -48,5 +48,5 @@ Technologies Used: List of technologies used. -->
 
 You can reach me via email at [aqil2401@gmail.com](mailto:aqil2401@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/muhammadaqilismail) and [GitHub](https://github.com/blankedwave).
 
-Feel free to explore more projects and details on my [portfolio website](https://blankedwave.github.io).
+Feel free to explore more projects and details on my [portfolio website](https://blankedwave.github.io/e-portfolio/).
  
