@@ -1,4 +1,4 @@
-# nik's Portfolio
+# Aqil's Portfolio
 
 Welcome to my portfolio! This repository showcases my skills, projects, and experience in software development and IT. Feel free to explore!
 
@@ -27,8 +27,8 @@ This repository serves as my portfolio website. It includes sections detailing m
 
 - **Laptop & PC Repair**: Intermediate
 - **Linux Systems & Administration**: Beginner
-- **Video Editing**: Basic
-- **Office Software & Productivity Tools**: Basic
+- **Video Editing**: Intermediate
+- **Office Software & Productivity Tools**: Intermediate
 
 <!-- ## Projects
 
@@ -46,7 +46,7 @@ Technologies Used: List of technologies used. -->
 
 ## Contact
 
-You can reach me via email at [nikazizicareer@gmail.com](mailto:nikazizicareer@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/nik-azizi-nik-yahya-666994216/) and [GitHub](https://github.com/nikazizi563).
+You can reach me via email at [aqil2401@gmail.com](mailto:aqil2401@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/muhammadaqilismail) and [GitHub](https://github.com/blankedwave).
 
-Feel free to explore more projects and details on my [portfolio website](https://nikazizi563.github.io).
+Feel free to explore more projects and details on my [portfolio website](https://blankedwave.github.io).
  
