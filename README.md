@@ -18,17 +18,17 @@ This repository serves as my portfolio website. It includes sections detailing m
 ### Software Development & Web Technologies
 
 - **HTML, CSS, JavaScript & PHP**: Basic
-- **Java, Android Studio & Flutter**: Beginner
-- **Python, C++, VB.NET**: Beginner
+- **Java**: Beginner
+- **Python, C++, VB.NET**: Basic
 - **Version Control (Git & GitHub)**: Basic
-- **SQL & Database Management**: Beginner
+- **SQL & DBMS**: Basic
 
 ### IT & Computer Skills
 
 - **Laptop & PC Repair**: Intermediate
 - **Linux Systems & Administration**: Beginner
-- **Video Editing**: Intermediate
-- **Office Software & Productivity Tools**: Intermediate
+- **Video & Photo Editing**: Intermediate
+- **Microsoft Office Suites & Google Workspace**: Intermediate
 
 <!-- ## Projects
 
