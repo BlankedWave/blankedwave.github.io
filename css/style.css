@@ -176,7 +176,9 @@ ul li {
   color: #ecf0f1; /* Light Gray */
   text-align: center;
   padding: 25px;
+  border-radius: 20px; /* Rounded edges */
 }
+
 
 .social-links {
   display: flex;
@@ -321,4 +323,98 @@ ul li {
   color: #2980b9; /* Slightly Darker Blue */
   transform: translateY(-2px);
   text-decoration: underline;
+}
+
+/* ===== Skills Section ===== */
+.skills-container {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill {
+  width: 100%;
+}
+
+.skill-name {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.skill-bar {
+  background: #e0e0e0;
+  border-radius: 25px;
+  height: 20px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  width: 0%; /* start from 0 */
+  background: #3498db; /* blue */
+  border-radius: 25px;
+  transition: width 1.5s ease-in-out;
+}
+
+.contact-section {
+  background: #ffffff; /* pure white */
+  padding: 40px 20px;
+  border-radius: 12px;
+  text-align: left;
+  max-width: 100%; /* allow it to take full container width */
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #222;
+  text-align: center;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #007bff;
+  margin: 10px auto 0;
+  border-radius: 5px;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  margin: 12px 0;
+  font-size: 1rem;
+}
+
+.contact-list a {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-list a:hover {
+  color: #007bff;
+}
+
+.contact-list i {
+  margin-right: 10px;
+  color: #007bff;
+  width: 20px;
+  text-align: center;
 }
