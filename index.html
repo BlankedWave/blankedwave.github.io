@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Aqil Ismail | Digital Resume</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .skill-fill {
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #06b6d4; /* Cyan 500 */
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="text-slate-900 antialiased">
+
+    <!-- Navigation -->
+    <header class="header fixed top-0 w-full z-50 glass">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-teal-600">
+                    Aqil Ismail
+                </div>
+                
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#hero" class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Home</a>
+                    <a href="#about" class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">About</a>
+                    <a href="#experience" class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Experience</a>
+                    <a href="#education" class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Education</a>
+                    <a href="#skills" class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Skills</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-slate-600" onclick="toggleMenu()">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#hero" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Home</a>
+                <a href="#about" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">About</a>
+                <a href="#experience" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Experience</a>
+                <a href="#education" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Education</a>
+                <a href="#skills" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Skills</a>
+                <a href="#contact" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-4 bg-white">
+        <div class="max-w-4xl text-center reveal">
+            <div class="mb-8 relative inline-block">
+                <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-teal-600 rounded-full blur opacity-25"></div>
+                <img src="./assets/profile.jpg" alt="Muhammad Aqil Ismail" 
+                     onerror="this.src='https://ui-avatars.com/api/?name=Aqil+Ismail&background=06b6d4&color=fff&size=256'"
+                     class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover border-4 border-white shadow-xl mx-auto">
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
+                Muhammad <span class="text-cyan-600">Aqil</span> Ismail
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 mb-10 font-light max-w-2xl mx-auto">
+                IT Professional specializing in AI, Web Development, and Multimedia Content Creation.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#contact" class="px-8 py-3 bg-cyan-600 text-white rounded-full font-semibold hover:bg-cyan-700 transition shadow-lg shadow-cyan-200">
+                    Get In Touch
+                </a>
+                <a href="https://akirusama.github.io/akirusama.github.io/assets/Resume.pdf" download class="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                    <i data-lucide="download" class="w-5 h-5"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-32">
+        
+        <!-- About Section -->
+        <section id="about" class="reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">About Me</h2>
+                <div class="w-16 h-1 bg-cyan-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-100">
+                <p class="text-slate-600 leading-relaxed text-lg text-center max-w-3xl mx-auto">
+                    I am an IT professional from Pasir Puteh, Kelantan with a Bachelor's Degree in Artificial Intelligence. 
+                    I thrive on troubleshooting technical complexities and optimizing digital systems. With experience spanning 
+                    from web programming to video editing, I bridge the gap between technical efficiency and creative engagement.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Work Experience</h2>
+                <div class="w-16 h-1 bg-cyan-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="space-y-8">
+                <!-- Job 1 -->
+                <div class="relative pl-8 sm:pl-0">
+                    <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                        <div class="sm:w-1/3">
+                            <h3 class="font-bold text-xl text-slate-900">Video Editor</h3>
+                            <p class="text-cyan-600 font-medium">Dakwah Digital Network (BeDaie)</p>
+                            <p class="text-sm text-slate-400 mt-1">Jul 2024 — Oct 2024</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Created engaging video content for publications, religious snippets, and Tajwid classes. Boosted audience engagement and drove sales through creative multimedia storytelling.
+                        </div>
+                    </div>
+                </div>
+                <!-- Job 2 -->
+                <div class="relative pl-8 sm:pl-0">
+                    <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                        <div class="sm:w-1/3">
+                            <h3 class="font-bold text-xl text-slate-900">Assistant Web Developer</h3>
+                            <p class="text-cyan-600 font-medium">Role Vision Sdn. Bhd.</p>
+                            <p class="text-sm text-slate-400 mt-1">Dec 2023 — May 2024</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Developed and optimized ERP systems. Focused on debugging, chatbot logic development, and UI design using Figma to enhance corporate web presence.
+                        </div>
+                    </div>
+                </div>
+                <!-- Job 3 -->
+                <div class="relative pl-8 sm:pl-0">
+                    <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
+                        <div class="sm:w-1/3">
+                            <h3 class="font-bold text-xl text-slate-900">Intern (Web & Systems)</h3>
+                            <p class="text-cyan-600 font-medium">Sudoers Solutions</p>
+                            <p class="text-sm text-slate-400 mt-1">Mar 2023 — Jun 2023</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Performed UI/API testing, created wireframes in Balsamiq, and managed server environments (Debian/PostgreSQL).
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Education</h2>
+                <div class="w-16 h-1 bg-cyan-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 flex gap-4">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit"><i data-lucide="graduation-cap" class="text-cyan-600"></i></div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Postgraduate Diploma in Education</h3>
+                        <p class="text-slate-500 text-sm italic">UKM — Pending Convocation</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 flex gap-4">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit"><i data-lucide="cpu" class="text-cyan-600"></i></div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">B.IS (Hons.) Intelligent Systems</h3>
+                        <p class="text-slate-500 text-sm italic">UiTM Shah Alam — 2023</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 flex gap-4">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit"><i data-lucide="code" class="text-cyan-600"></i></div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Diploma in Computer Science</h3>
+                        <p class="text-slate-500 text-sm italic">UiTM Machang — 2021</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 flex gap-4">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit"><i data-lucide="book" class="text-cyan-600"></i></div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Sijil Pelajaran Malaysia (SPM)</h3>
+                        <p class="text-slate-500 text-sm italic">SMK Kamil — 2017</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Professional Skills</h2>
+                <div class="w-16 h-1 bg-cyan-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">HTML / CSS / JavaScript</span>
+                            <span class="text-slate-400">75%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-cyan-500 rounded-full" data-width="75%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Laravel / PHP / SQL</span>
+                            <span class="text-slate-400">50%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-cyan-500 rounded-full" data-width="50%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Video Editing (CapCut/Adobe)</span>
+                            <span class="text-slate-400">85%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-cyan-500 rounded-full" data-width="85%"></div></div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Software Testing & Troubleshooting</span>
+                            <span class="text-slate-400">80%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-cyan-500 rounded-full" data-width="80%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Figma / UI & UX Design</span>
+                            <span class="text-slate-400">75%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-cyan-500 rounded-full" data-width="75%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Communication & Collaboration</span>
+                            <span class="text-slate-400">90%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-cyan-500 rounded-full" data-width="90%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Connect With Me</h2>
+                <div class="w-16 h-1 bg-cyan-600 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                    <a href="mailto:aqil2401@gmail.com" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="mail" class="w-6 h-6 text-cyan-500"></i>
+                        <span>aqil2401@gmail.com</span>
+                    </a>
+                    <a href="tel:+60108988245" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="phone" class="w-6 h-6 text-cyan-500"></i>
+                        <span>010-898 8245</span>
+                    </a>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold mb-4">Social Presence</h3>
+                    <a href="https://www.linkedin.com/in/muhammadaqilismail/" target="_blank" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="linkedin" class="w-6 h-6 text-cyan-500"></i>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://wa.me/60108988245" target="_blank" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-cyan-500"></i>
+                        <span>WhatsApp Me</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="text-slate-400 text-sm mb-4">© <span id="copyright-year"></span> Muhammad Aqil Ismail. All Rights Reserved.</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-2 bg-slate-100 text-slate-500 rounded-full hover:bg-cyan-600 hover:text-white transition shadow-sm">
+                    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Auto-update copyright year
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isOpen = !menu.classList.contains('hidden');
+            
+            menu.classList.toggle('hidden');
+            icon.setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+            lucide.createIcons();
+        }
+
+        // Reveal animations on scroll
+        const reveal = () => {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                    
+                    // Trigger skill bar animation if it's the skills section
+                    if (el.id === 'skills') {
+                        const bars = el.querySelectorAll('.skill-fill');
+                        bars.forEach(bar => {
+                            bar.style.width = bar.getAttribute('data-width');
+                        });
+                    }
+                }
+            });
+        };
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = target.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
