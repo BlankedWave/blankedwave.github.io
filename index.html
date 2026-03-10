@@ -466,6 +466,18 @@
     </footer>
 
     <script>
+
+        // Title Focus/Blur Dynamic
+        const originalTitle = document.title;
+        
+        window.addEventListener("blur", () => {
+          document.title = "Don't forget to hire me! 😉";
+        });
+        
+        window.addEventListener("focus", () => {
+          document.title = originalTitle;
+        });
+        
         // Initialize Lucide Icons
         lucide.createIcons();
 
