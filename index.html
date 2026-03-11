@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Aqil Ismail | Digital Resume</title>
-    <!-- <link rel="icon" type="image/svg+xml" href="https://cdn-icons-png.flaticon.com/512/5403/5403762.png"> -->
     <link rel="icon" type="image/png" href="/assets/favicon-32x32.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -52,6 +51,35 @@
         }
         .nav-link:hover::after {
             width: 100%;
+        }
+
+        /* --- Glow & Trace Animation --- */
+        .glow-container {
+            position: relative;
+            padding: 4px;
+            border-radius: 9999px;
+            background: rgba(6, 182, 212, 0.1);
+            overflow: hidden;
+            display: inline-block;
+        }
+        .glow-container::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 20%, #06b6d4 50%, transparent 80%, transparent 100%);
+            animation: rotate 4s linear infinite;
+            z-index: 0;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .glow-inner {
+            position: relative;
+            z-index: 10;
+            background: white;
+            border-radius: 9999px;
+            display: block;
         }
 
         /* --- Loading Animation Styles --- */
@@ -169,13 +197,16 @@
     <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-4 bg-white">
         <div class="max-w-4xl text-center reveal">
             <div class="mb-8 relative inline-block">
-                <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-teal-600 rounded-full blur opacity-25"></div>
-                <img src="./assets/profileStudioCropped.png" alt="Muhammad Aqil Ismail" 
-                     onerror="this.src='https://ui-avatars.com/api/?name=Aqil+Ismail&background=06b6d4&color=fff&size=256'"
-                     class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover border-4 border-white shadow-xl mx-auto">
+                <div class="glow-container">
+                    <div class="glow-inner">
+                        <img src="./assets/profileStudioCropped.png" alt="Muhammad Aqil Ismail" 
+                             onerror="this.src='https://ui-avatars.com/api/?name=Aqil+Ismail&background=06b6d4&color=fff&size=256'"
+                             class="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover border-4 border-white shadow-xl mx-auto">
+                    </div>
+                </div>
             </div>
             <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
-                Muhammad <span class="text-cyan-600">Aqil</span> Ismail
+                <span id="scramble-muhammad">Muhammad</span> <span id="scramble-aqil" class="text-cyan-600">Aqil</span> <span id="scramble-ismail">Ismail</span>
             </h1>
             <p class="text-lg sm:text-xl text-slate-600 mb-10 font-light max-w-2xl mx-auto">
                 IT Professional specializing in AI, Web Development, and Multimedia Content Creation.
@@ -214,7 +245,6 @@
                 <h2 class="text-3xl font-bold mb-4">Work Experience</h2>
                 <div class="w-16 h-1 bg-cyan-600 mx-auto rounded-full"></div>
             </div>
-            <!-- Current Job -->
             <div class="space-y-8">
                 <div class="relative pl-8 sm:pl-0">
                     <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
@@ -229,7 +259,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Job 1 -->
                 <div class="relative pl-8 sm:pl-0">
                     <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
                         <div class="sm:w-1/3 flex flex-col items-center text-center">
@@ -243,7 +272,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Job 2 -->
                 <div class="relative pl-8 sm:pl-0">
                     <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
                         <div class="sm:w-1/3 flex flex-col items-center text-center">
@@ -257,7 +285,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Job 3 -->
                 <div class="relative pl-8 sm:pl-0">
                     <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
                         <div class="sm:w-1/3 flex flex-col items-center text-center">
@@ -271,7 +298,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Job 4 -->
                 <div class="relative pl-8 sm:pl-0">
                     <div class="flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition">
                         <div class="sm:w-1/3 flex flex-col items-center text-center">
@@ -466,29 +492,89 @@
     </footer>
 
     <script>
+        // Scrambler Class
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="opacity-50">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
 
         // Title Focus/Blur Dynamic
         const originalTitle = document.title;
-        
-        window.addEventListener("blur", () => {
-          document.title = "Don't forget to hire me! 😉";
-        });
-        
-        window.addEventListener("focus", () => {
-          document.title = originalTitle;
-        });
+        window.addEventListener("blur", () => { document.title = "Don't forget to hire me! 😉"; });
+        window.addEventListener("focus", () => { document.title = originalTitle; });
         
         // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Handle Loading Screen
+        // Handle Loading Screen & Trigger Scramble
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
+            const fxM = new TextScramble(document.getElementById('scramble-muhammad'));
+            const fxA = new TextScramble(document.getElementById('scramble-aqil'));
+            const fxI = new TextScramble(document.getElementById('scramble-ismail'));
+
             setTimeout(() => {
+                // Exit loader
                 loader.classList.add('loader-exit');
                 document.body.style.overflow = 'auto'; // Re-enable scrolling
                 reveal(); // Initial reveal check
-            }, 1800); // Slight delay for the animation to play out
+                
+                // Trigger Scramble Animation
+                setTimeout(() => {
+                    fxM.setText('Muhammad');
+                    fxA.setText('Aqil');
+                    fxI.setText('Ismail');
+                }, 100);
+            }, 1800);
         });
 
         // Auto-update copyright year
@@ -499,7 +585,6 @@
             const menu = document.getElementById('mobile-menu');
             const icon = document.getElementById('menu-icon');
             const isOpen = !menu.classList.contains('hidden');
-            
             menu.classList.toggle('hidden');
             icon.setAttribute('data-lucide', isOpen ? 'menu' : 'x');
             lucide.createIcons();
@@ -514,13 +599,9 @@
                 const elementVisible = 150;
                 if (elementTop < windowHeight - elementVisible) {
                     el.classList.add('active');
-                    
-                    // Trigger skill bar animation if it's the skills section
                     if (el.id === 'skills') {
                         const bars = el.querySelectorAll('.skill-fill');
-                        bars.forEach(bar => {
-                            bar.style.width = bar.getAttribute('data-width');
-                        });
+                        bars.forEach(bar => { bar.style.width = bar.getAttribute('data-width'); });
                     }
                 }
             });
@@ -528,13 +609,12 @@
 
         window.addEventListener('scroll', reveal);
 
-        // Smooth scrolling for navigation links
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
                 const target = document.querySelector(targetId);
                 if (target) {
                     const offset = 80;
@@ -542,11 +622,7 @@
                     const elementRect = target.getBoundingClientRect().top;
                     const elementPosition = elementRect - bodyRect;
                     const offsetPosition = elementPosition - offset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             });
         });
