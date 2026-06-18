@@ -218,21 +218,19 @@
                     Get In Touch
                 </a>
             
-                <!-- Resume Download -->
-                <a href="assets/files/Resume.pdf"
-                   download="Resume.pdf"
-                   class="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
-                    <i data-lucide="download" class="w-5 h-5"></i>
+                <!-- Resume Button -->
+                <button onclick="openAndDownload('assets/files/Resume.pdf', 'Resume.pdf')"
+                        class="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
                     Download Resume
-                </a>
+                </button>
             
-                <!-- CV Download -->
-                <a href="assets/files/Curriculum Vitae (CV).pdf"
-                   download="Curriculum Vitae (CV).pdf"
-                   class="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
-                    <i data-lucide="download" class="w-5 h-5"></i>
+                <!-- CV Button -->
+                <button onclick="openAndDownload('assets/files/Curriculum%20Vitae%20(CV).pdf', 'Curriculum Vitae (CV).pdf')"
+                        class="px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
                     Download CV
-                </a>
+                </button>
             </div>
         </div>
     </section>
@@ -562,6 +560,35 @@
             }
         }
 
+        //download opens in new tab
+        function openAndDownload(url, filename) {
+            const newTab = window.open(url, '_blank');
+        
+            if (!newTab) {
+                // fallback if popup blocked
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                return;
+            }
+        
+            // try to force download inside new tab (best effort)
+            setTimeout(() => {
+                try {
+                    const a = newTab.document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    newTab.document.body.appendChild(a);
+                    a.click();
+                } catch (e) {
+                    // browsers may block this due to security (normal)
+                }
+            }, 500);
+        }
+        
         // Title Focus/Blur Dynamic
         const originalTitle = document.title;
         window.addEventListener("blur", () => { document.title = "Don't forget to hire me! 😉"; });
