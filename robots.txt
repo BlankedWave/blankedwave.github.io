@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://resume.blankedwave.name.my/sitemap.xml
