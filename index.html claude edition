@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Aqil Ismail | Digital Resume</title>
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (labels/data) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="IT Professional based in Cyberjaya, Selangor. Specialising in Artificial Intelligence, Web Development (Laravel, PHP, JS), Video Editing, and Multimedia Content Creation. View my digital resume and get in touch.">
+    <meta name="keywords" content="Muhammad Aqil Ismail, IT Professional, Web Developer, AI, Laravel, PHP, JavaScript, Video Editor, Cyberjaya, Malaysia, Resume, CV">
+    <link rel="canonical" href="https://resume.blankedwave.name.my/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://resume.blankedwave.name.my/">
+    <meta property="og:title" content="Muhammad Aqil Ismail | IT Professional Digital Resume">
+    <meta property="og:description" content="IT Professional in Cyberjaya – AI, Web Development, Multimedia.">
+    <meta property="og:image" content="https://resume.blankedwave.name.my/assets/profileStudioCropped.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://resume.blankedwave.name.my/">
+    <meta name="twitter:title" content="Muhammad Aqil Ismail | IT Professional Digital Resume">
+    <meta name="twitter:description" content="IT Professional in Cyberjaya – AI, Web Development, Multimedia.">
+    <meta name="twitter:image" content="https://resume.blankedwave.name.my/assets/profileStudioCropped.png">
+
+    <!-- Structured Data (JSON‑LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Muhammad Aqil Ismail",
+      "jobTitle": "IT Professional",
+      "description": "IT Professional specialising in AI, Web Development, and Multimedia Content Creation.",
+      "url": "https://resume.blankedwave.name.my/",
+      "email": "aqil@blankedwave.name.my",
+      "telephone": "+60108988245",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cyberjaya",
+        "addressRegion": "Selangor",
+        "addressCountry": "MY"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/muhammadaqilismail/"
+      ],
+      "alumniOf": [
+        { "@type": "CollegeOrUniversity", "name": "Universiti Teknologi MARA (UiTM)" },
+        { "@type": "CollegeOrUniversity", "name": "Universiti Kebangsaan Malaysia (UKM)" }
+      ],
+      "image": "https://resume.blankedwave.name.my/assets/profileStudioCropped.png"
+    }
+    </script>
+
+    <style>
+        :root{
+            --ink:#0f172a;
+            --cyan:#0891b2;
+            --teal:#0d9488;
+            --amber:#d97706;
+            --bg:#f7f9fb;
+        }
+        *{ box-sizing:border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+        html.loading, html.loading body{ overflow:hidden; }
+        h1,h2,h3,.display{ font-family:'Space Grotesk', sans-serif; }
+        .mono{ font-family:'JetBrains Mono', monospace; letter-spacing:0.03em; }
+
+        /* --- Ambient grid + spotlight backdrop --- */
+        .grid-field{
+            position: fixed; inset:0; z-index:0; pointer-events:none;
+            background-image:
+                linear-gradient(to right, rgba(15,23,42,0.045) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15,23,42,0.045) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, black 40%, transparent 100%);
+        }
+        #spotlight{
+            position: fixed; inset:0; z-index:1; pointer-events:none;
+            background: radial-gradient(600px circle at var(--sx,50%) var(--sy,0px), rgba(8,145,178,0.10), transparent 65%);
+            transition: opacity .3s ease;
+        }
+        main, header, footer, #hero { position:relative; z-index:2; }
+
+        /* --- Scroll progress --- */
+        #scroll-progress{
+            position:fixed; top:0; left:0; height:3px; width:0%;
+            background:linear-gradient(to right,#0891b2,#0d9488);
+            z-index:80; transition:width .1s linear;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .skill-fill {
+            width: 0%;
+            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position:relative;
+            box-shadow: 0 0 12px rgba(8,145,178,0.55);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -4px; left: 0;
+            background: linear-gradient(to right,#0891b2,#0d9488);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after,
+        .nav-link.is-active::after { width: 100%; }
+        .nav-link.is-active{ color:#0891b2; }
+
+        /* --- Signature: glow-trace avatar ring --- */
+        .glow-container {
+            position: relative; padding: 4px; border-radius: 9999px;
+            background: rgba(6, 182, 212, 0.1); overflow: hidden; display: inline-block;
+        }
+        .glow-container::before {
+            content: '';
+            position: absolute; inset: -50%;
+            background: conic-gradient(from 0deg, transparent 0%, transparent 20%, #06b6d4 50%, transparent 80%, transparent 100%);
+            animation: rotate 4s linear infinite;
+            z-index: 0;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .glow-inner { position: relative; z-index: 10; background: white; border-radius: 9999px; display: block; }
+
+        /* status pill pulse */
+        .pulse-dot{ position:relative; width:8px; height:8px; border-radius:9999px; background:#10b981; }
+        .pulse-dot::after{
+            content:''; position:absolute; inset:0; border-radius:9999px; background:#10b981;
+            animation: pulse-ring 1.8s cubic-bezier(0.4,0,0.6,1) infinite;
+        }
+        @keyframes pulse-ring{ 0%{transform:scale(1);opacity:.7;} 100%{transform:scale(2.8);opacity:0;} }
+
+        /* magnetic buttons */
+        .magnetic{ transition: transform .25s cubic-bezier(0.16,1,0.3,1); will-change:transform; }
+
+        /* tilt cards */
+        .tilt-card{ transition: transform .2s ease, box-shadow .2s ease; transform-style:preserve-3d; will-change:transform; }
+
+        /* eyebrow label */
+        .eyebrow{
+            display:inline-flex; align-items:center; gap:.5rem;
+            font-family:'JetBrains Mono', monospace; font-size:.72rem; letter-spacing:.12em;
+            text-transform:uppercase; color:#0891b2; font-weight:600;
+        }
+        .eyebrow::before{ content:''; width:18px; height:1px; background:#0891b2; display:inline-block; }
+
+        /* blinking cursor after hero name */
+        .caret{
+            display:inline-block; width:3px; height:0.8em; background:#0891b2;
+            margin-left:4px; animation: blink 1s step-end infinite; vertical-align:-0.1em;
+        }
+        @keyframes blink{ 50%{ opacity:0; } }
+
+        /* --- Loading Animation Styles --- */
+        #loader {
+            position: fixed; inset: 0; z-index: 100;
+            background: #ffffff;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .loader-text {
+            font-weight: 700; font-size: 2rem; overflow: hidden; height: 3rem;
+            display: flex; color: #0f172a; font-family:'Space Grotesk', sans-serif;
+        }
+        .loader-text span {
+            display: inline-block; transform: translateY(100%);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .loader-bar-container {
+            width: 220px; height: 2px; background: #f1f5f9;
+            margin-top: 1.1rem; border-radius: 99px; overflow: hidden; position: relative;
+        }
+        .loader-bar {
+            position: absolute; height: 100%; width: 0%;
+            background: linear-gradient(to right, #0891b2, #0d9488);
+            animation: growBar 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .loader-pct{
+            margin-top:.6rem; font-family:'JetBrains Mono', monospace; font-size:.72rem;
+            color:#94a3b8; letter-spacing:.08em;
+        }
+        @keyframes slideUp { to { transform: translateY(0); } }
+        @keyframes growBar { to { width: 100%; } }
+        .loader-exit { transform: translateY(-100%); }
+
+        /* card hover sheen */
+        .sheen{ position:relative; overflow:hidden; }
+        .sheen::after{
+            content:''; position:absolute; top:0; left:-150%; width:60%; height:100%;
+            background:linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+            transform:skewX(-20deg); transition:left .7s ease;
+        }
+        .sheen:hover::after{ left:150%; }
+
+        /* focus visibility */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #0891b2; outline-offset: 3px; border-radius: 4px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+        }
+    </style>
+</head>
+<body class="text-slate-900 antialiased">
+
+    <div class="grid-field"></div>
+    <div id="spotlight"></div>
+    <div id="scroll-progress"></div>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-text">
+            <span style="animation-delay: 0.1s">A</span>
+            <span style="animation-delay: 0.15s">Q</span>
+            <span style="animation-delay: 0.2s">I</span>
+            <span style="animation-delay: 0.25s">L</span>
+            <span style="margin-left: 10px; animation-delay: 0.35s">I</span>
+            <span style="animation-delay: 0.4s">S</span>
+            <span style="animation-delay: 0.45s">M</span>
+            <span style="animation-delay: 0.5s">A</span>
+            <span style="animation-delay: 0.55s">I</span>
+            <span style="animation-delay: 0.6s">L</span>
+        </div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+        <div class="loader-pct" id="loader-pct">LOADING // 00%</div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="header fixed top-0 w-full z-50 glass">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-600 to-teal-600 display">
+                    Aqil Ismail
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#hero" data-nav class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Home</a>
+                    <a href="#about" data-nav class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">About</a>
+                    <a href="#experience" data-nav class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Experience</a>
+                    <a href="#education" data-nav class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Education</a>
+                    <a href="#skills" data-nav class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Skills</a>
+                    <a href="#contact" data-nav class="nav-link text-sm font-medium text-slate-600 hover:text-cyan-600 transition">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2 text-slate-600" onclick="toggleMenu()" aria-label="Toggle menu">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#hero" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Home</a>
+                <a href="#about" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">About</a>
+                <a href="#experience" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Experience</a>
+                <a href="#education" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Education</a>
+                <a href="#skills" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Skills</a>
+                <a href="#contact" onclick="toggleMenu()" class="block px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-20 px-4">
+        <div class="max-w-4xl text-center reveal">
+            <div class="mb-6 flex justify-center">
+                <span class="inline-flex items-center gap-2 mono text-xs text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full">
+                    <span class="pulse-dot"></span> AVAILABLE FOR OPPORTUNITIES
+                </span>
+            </div>
+            <div class="mb-8 relative inline-block">
+                <div class="glow-container">
+                    <div class="glow-inner">
+                        <img src="./assets/profileStudioCropped.png" alt="Muhammad Aqil Ismail"
+                             onerror="this.src='https://ui-avatars.com/api/?name=Aqil+Ismail&background=06b6d4&color=fff&size=256'"
+                             class="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover border-4 border-white shadow-xl mx-auto">
+                    </div>
+                </div>
+            </div>
+            <p class="eyebrow justify-center mb-4">Cyberjaya, Selangor</p>
+            <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
+                <span id="scramble-muhammad">Muhammad</span> <span id="scramble-aqil" class="text-cyan-600">Aqil</span> <span id="scramble-ismail">Ismail</span><span class="caret"></span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 mb-10 font-light max-w-2xl mx-auto">
+                IT Professional specializing in AI, Web Development, and Multimedia Content Creation.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <!-- Contact Button -->
+                <a href="#contact" data-magnetic
+                   class="magnetic px-8 py-3 bg-cyan-600 text-white rounded-full font-semibold hover:bg-cyan-700 transition shadow-lg shadow-cyan-200">
+                    Get In Touch
+                </a>
+
+                <!-- Resume Button -->
+                <button onclick="openAndDownload('assets/files/Resume.pdf', 'Resume.pdf')" data-magnetic
+                        class="magnetic px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    Download Resume
+                </button>
+
+                <!-- CV Button -->
+                <button onclick="openAndDownload('assets/files/Curriculum%20Vitae%20(CV).pdf', 'Curriculum Vitae (CV).pdf')" data-magnetic
+                        class="magnetic px-8 py-3 bg-white border border-slate-200 text-slate-700 rounded-full font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-5 h-5"></i>
+                    Download CV
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-32">
+
+        <!-- About Section -->
+        <section id="about" class="reveal">
+            <div class="text-center mb-12">
+                <p class="eyebrow justify-center mb-3">// About</p>
+                <h2 class="text-3xl font-bold mb-4">About Me</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-100">
+                <p class="text-slate-600 leading-relaxed text-lg text-center max-w-3xl mx-auto">
+                    I am an IT professional based in Cyberjaya, Selangor with a Bachelor's Degree in Artificial Intelligence.
+                    I thrive on troubleshooting technical complexities and optimizing digital systems. With experience spanning
+                    from web programming to video editing, I bridge the gap between technical efficiency and creative engagement.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="reveal">
+            <div class="text-center mb-12">
+                <p class="eyebrow justify-center mb-3">// Experience</p>
+                <h2 class="text-3xl font-bold mb-4">Work Experience</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="space-y-8 relative">
+                <div class="hidden sm:block absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-300 via-slate-200 to-transparent"></div>
+
+                <div class="relative pl-8 sm:pl-0 reveal-child">
+                    <div class="tilt-card sheen flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="sm:w-1/3 flex flex-col items-center text-center">
+                            <img src="assets/company logo/wp.jpg" alt="Well Prestige Logo" class="w-16 h-16 mb-3 rounded-md object-contain border border-slate-50">
+                            <h3 class="font-bold text-xl text-slate-900 mb-1">IT Support Engineer</h3>
+                            <p class="text-cyan-600 font-medium">Well Prestige Sdn. Bhd.</p>
+                            <p class="mono text-xs text-slate-400 mt-2">JAN 2026 — CURRENT</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Installed, configured, and maintained the company’s IT hardware, software, and network systems to ensure smooth daily operations. Diagnosed and resolved technical issues efficiently, minimising downtime and supporting overall productivity. Managed user accounts, system access, and routine updates while performing regular maintenance and data backups. Provided responsive helpdesk support to employees and coordinated with vendors for equipment servicing and system improvements.
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 sm:pl-0 reveal-child">
+                    <div class="tilt-card sheen flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="sm:w-1/3 flex flex-col items-center text-center">
+                            <img src="assets/company logo/ddn.jpg" alt="BeDaie Logo" class="w-16 h-16 mb-3 rounded-md object-contain border border-slate-50">
+                            <h3 class="font-bold text-xl text-slate-900 mb-1">Video Editor</h3>
+                            <p class="text-cyan-600 font-medium">Dakwah Digital Network Sdn. Bhd. (BeDaie)</p>
+                            <p class="mono text-xs text-slate-400 mt-2">JUL 2024 — OCT 2024</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Created and edited engaging video content, including book previews, reviews, educational snippets, promotional videos, and inspirational quotes. Edited religious class videos by adding subtitles and creative elements, particularly for Tajwid classes. Played a key role in driving awareness and sales of the company’s publications through captivating and informative videos that resonated with the audience.
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 sm:pl-0 reveal-child">
+                    <div class="tilt-card sheen flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="sm:w-1/3 flex flex-col items-center text-center">
+                            <img src="assets/company logo/rvsb.jpg" alt="Role Vision Logo" class="w-16 h-16 mb-3 rounded-md object-contain border border-slate-50">
+                            <h3 class="font-bold text-xl text-slate-900 mb-1">Assistant Developer</h3>
+                            <p class="text-cyan-600 font-medium">Role Vision Sdn. Bhd.</p>
+                            <p class="mono text-xs text-slate-400 mt-2">DEC 2023 — MAY 2024</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Designed, coded, and enhanced the company’s ERP system, ensuring peak performance and user experience through rigorous testing, debugging, and optimisation. Played a key role in troubleshooting and resolving issues efficiently. Developed and tested chatbot flows using the company’s proprietary chatbot and designed a corporate website using Figma.
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 sm:pl-0 reveal-child">
+                    <div class="tilt-card sheen flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="sm:w-1/3 flex flex-col items-center text-center">
+                            <img src="assets/company logo/ss.png" alt="Sudoers Solutions Logo" class="w-16 h-16 mb-3 rounded-md object-contain border border-slate-50">
+                            <h3 class="font-bold text-xl text-slate-900 mb-1">Intern (Web & Systems)</h3>
+                            <p class="text-cyan-600 font-medium">Sudoers Solutions Sdn. Bhd.</p>
+                            <p class="mono text-xs text-slate-400 mt-2">MAR 2023 — JUN 2023</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Tested websites developed by senior team members, focusing on UI and API functionality. Created documentation and managed quotation documents. Gained hands-on experience with server devices during a client visit to Malaysian Palm Oil Berhad. Designed wireframes for a bidding website using Balsamiq and learned to set up a server from scratch using Debian OS and MariaDB/PostgreSQL in Oracle VirtualBox.
+                        </div>
+                    </div>
+                </div>
+                <div class="relative pl-8 sm:pl-0 reveal-child">
+                    <div class="tilt-card sheen flex flex-col sm:flex-row gap-6 bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition">
+                        <div class="sm:w-1/3 flex flex-col items-center text-center">
+                            <img src="assets/company logo/fhtc.png" alt="FH Training Center Logo" class="w-16 h-16 mb-3 rounded-md object-contain border border-slate-50">
+                            <h3 class="font-bold text-xl text-slate-900 mb-1">
+                                Intern <br>
+                                (Digital Media & Training)
+                            </h3>
+                            <p class="text-cyan-600 font-medium">FH Training Center</p>
+                            <p class="mono text-xs text-slate-400 mt-2">AUG 2020 – SEP 2020</p>
+                        </div>
+                        <div class="sm:w-2/3 text-slate-600">
+                            Facilitated workshops on Google Suites and Adobe Photoshop, equipping participants with valuable technical skills. Undertook multimedia tasks, including creating tutorial videos on Microsoft Word, designing banners, and crafting engaging posters for the company’s social media. Enhanced teaching abilities and creative content production skills.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="reveal">
+            <div class="text-center mb-12">
+                <p class="eyebrow justify-center mb-3">// Education</p>
+                <h2 class="text-3xl font-bold mb-4">Education</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="tilt-card bg-white p-6 rounded-2xl border border-slate-100 flex gap-4 hover:shadow-lg transition">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit flex items-center justify-center">
+                        <img src="assets/edu logo/UKM.png" alt="UKM Logo" class="w-6 h-6 object-contain scale-125">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Postgraduate Diploma in Education</h3>
+                        <p class="text-slate-500 text-base">Universiti Kebangsaan Malaysia (UKM) - Bangi</p>
+                        <p class="mono text-slate-500 text-xs mt-1">PENDING CONVOCATION</p>
+                    </div>
+                </div>
+                <div class="tilt-card bg-white p-6 rounded-2xl border border-slate-100 flex gap-4 hover:shadow-lg transition">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit flex items-center justify-center">
+                        <img src="assets/edu logo/UiTM.png" alt="UiTM Logo" class="w-6 h-6 object-contain scale-180">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">
+                            Bachelor Of Information Systems<br>
+                            (Hons.) Intelligent Systems Engineering
+                        </h3>
+                        <p class="text-slate-500 text-base">Universiti Teknologi MARA (UiTM) - Shah Alam</p>
+                        <p class="mono text-slate-500 text-xs mt-1">2023</p>
+                    </div>
+                </div>
+                <div class="tilt-card bg-white p-6 rounded-2xl border border-slate-100 flex gap-4 hover:shadow-lg transition">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit flex items-center justify-center">
+                        <img src="assets/edu logo/UiTM.png" alt="UiTM Logo" class="w-6 h-6 object-contain">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Diploma in Computer Science</h3>
+                        <p class="text-slate-500 text-base">Universiti Teknologi MARA (UiTM) - Machang</p>
+                        <p class="mono text-slate-500 text-xs mt-1">2021</p>
+                    </div>
+                </div>
+                <div class="tilt-card bg-white p-6 rounded-2xl border border-slate-100 flex gap-4 hover:shadow-lg transition">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit flex items-center justify-center">
+                        <img src="assets/edu logo/smkkamil.jpg" alt="SMK Kamil Logo" class="w-6 h-6 object-contain">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Sijil Pelajaran Malaysia (SPM)</h3>
+                        <p class="text-slate-500 text-base">Sekolah Menengah Kebangsaan Kamil</p>
+                        <p class="mono text-slate-500 text-xs mt-1">2017</p>
+                    </div>
+                </div>
+                <div class="tilt-card bg-white p-6 rounded-2xl border border-slate-100 flex gap-4 hover:shadow-lg transition">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit flex items-center justify-center">
+                        <img src="assets/edu logo/smkkamil.jpg" alt="SMK Kamil Logo" class="w-6 h-6 object-contain">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Pentaksiran Tingkatan 3 (PT3)</h3>
+                        <p class="text-slate-500 text-base">Sekolah Menengah Kebangsaan Kamil</p>
+                        <p class="mono text-slate-500 text-xs mt-1">2015</p>
+                    </div>
+                </div>
+                <div class="tilt-card bg-white p-6 rounded-2xl border border-slate-100 flex gap-4 hover:shadow-lg transition">
+                    <div class="bg-cyan-50 p-3 rounded-xl h-fit flex items-center justify-center">
+                        <img src="assets/edu logo/skkamil2.jpg" alt="SK Kamil 2 Logo" class="w-6 h-6 object-contain">
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">Ujian Pencapaian Sekolah Rendah (UPSR)</h3>
+                        <p class="text-slate-500 text-base">Sekolah Kebangsaan Kamil 2</p>
+                        <p class="mono text-slate-500 text-xs mt-1">2012</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="reveal">
+            <div class="text-center mb-12">
+                <p class="eyebrow justify-center mb-3">// Skills</p>
+                <h2 class="text-3xl font-bold mb-4">Professional Skills</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">HTML / CSS / JavaScript</span>
+                            <span class="mono text-slate-400 skill-num" data-target="75">0%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full" data-width="75%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Laravel / PHP / SQL</span>
+                            <span class="mono text-slate-400 skill-num" data-target="50">0%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full" data-width="50%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Video Editing (CapCut/Adobe)</span>
+                            <span class="mono text-slate-400 skill-num" data-target="85">0%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full" data-width="85%"></div></div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Software Testing & Troubleshooting</span>
+                            <span class="mono text-slate-400 skill-num" data-target="80">0%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full" data-width="80%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Figma / UI & UX Design</span>
+                            <span class="mono text-slate-400 skill-num" data-target="75">0%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full" data-width="75%"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-semibold text-slate-700">Communication & Collaboration</span>
+                            <span class="mono text-slate-400 skill-num" data-target="90">0%</span>
+                        </div>
+                        <div class="h-2 bg-slate-100 rounded-full"><div class="skill-fill h-full bg-gradient-to-r from-cyan-500 to-teal-400 rounded-full" data-width="90%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <div class="text-center mb-12">
+                <p class="eyebrow justify-center mb-3">// Contact</p>
+                <h2 class="text-3xl font-bold mb-4">Connect With Me</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-teal-500 mx-auto rounded-full"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/50">
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold mb-4">Contact Information</h3>
+                    <a href="mailto:aqil@blankedwave.name.my" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="mail" class="w-6 h-6 text-cyan-500"></i>
+                        <span>aqil@blankedwave.name.my</span>
+                    </a>
+                    <a href="mailto:aqil2401@gmail.com" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="mail" class="w-6 h-6 text-cyan-500"></i>
+                        <span>aqil2401@gmail.com</span>
+                    </a>
+                    <a href="tel:+60108988245" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="phone" class="w-6 h-6 text-cyan-500"></i>
+                        <span>010-898 8245</span>
+                    </a>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold mb-4">Social Presence</h3>
+                    <a href="https://www.linkedin.com/in/muhammadaqilismail/" target="_blank" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="user-round-plus" class="w-6 h-6 text-cyan-500"></i>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://wa.me/60108988245" target="_blank" class="flex items-center gap-4 text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition p-4 bg-slate-50 rounded-2xl">
+                        <i data-lucide="message-circle" class="w-6 h-6 text-cyan-500"></i>
+                        <span>WhatsApp Me</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mono text-slate-400 text-xs mb-4">© <span id="copyright-year"></span> MUHAMMAD AQIL ISMAIL. ALL RIGHTS RESERVED.</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-2 bg-slate-100 text-slate-500 rounded-full hover:bg-cyan-600 hover:text-white transition shadow-sm" aria-label="Back to top">
+                    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Scrambler Class
+        class TextScramble {
+            constructor(el) {
+                this.el = el;
+                this.chars = '!<>-_\\/[]{}—=+*^?#________';
+                this.update = this.update.bind(this);
+            }
+            setText(newText) {
+                const oldText = this.el.innerText;
+                const length = Math.max(oldText.length, newText.length);
+                const promise = new Promise((resolve) => this.resolve = resolve);
+                this.queue = [];
+                for (let i = 0; i < length; i++) {
+                    const from = oldText[i] || '';
+                    const to = newText[i] || '';
+                    const start = Math.floor(Math.random() * 40);
+                    const end = start + Math.floor(Math.random() * 40);
+                    this.queue.push({ from, to, start, end });
+                }
+                cancelAnimationFrame(this.frameRequest);
+                this.frame = 0;
+                this.update();
+                return promise;
+            }
+            update() {
+                let output = '';
+                let complete = 0;
+                for (let i = 0, n = this.queue.length; i < n; i++) {
+                    let { from, to, start, end, char } = this.queue[i];
+                    if (this.frame >= end) {
+                        complete++;
+                        output += to;
+                    } else if (this.frame >= start) {
+                        if (!char || Math.random() < 0.28) {
+                            char = this.randomChar();
+                            this.queue[i].char = char;
+                        }
+                        output += `<span class="opacity-50">${char}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+                this.el.innerHTML = output;
+                if (complete === this.queue.length) {
+                    this.resolve();
+                } else {
+                    this.frameRequest = requestAnimationFrame(this.update);
+                    this.frame++;
+                }
+            }
+            randomChar() {
+                return this.chars[Math.floor(Math.random() * this.chars.length)];
+            }
+        }
+
+        // download opens in new tab
+        function openAndDownload(url, filename) {
+            const newTab = window.open(url, '_blank');
+            if (!newTab) {
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                return;
+            }
+            setTimeout(() => {
+                try {
+                    const a = newTab.document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    newTab.document.body.appendChild(a);
+                    a.click();
+                } catch (e) { /* browsers may block this due to security (normal) */ }
+            }, 500);
+        }
+
+        // Title Focus/Blur Dynamic
+        const originalTitle = document.title;
+        window.addEventListener("blur", () => { document.title = "Don't forget to hire me! 😉"; });
+        window.addEventListener("focus", () => { document.title = originalTitle; });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        document.documentElement.classList.add('loading');
+
+        // Loader percentage counter
+        (function () {
+            const pctEl = document.getElementById('loader-pct');
+            let pct = 0;
+            const iv = setInterval(() => {
+                pct = Math.min(100, pct + Math.ceil(Math.random() * 18));
+                pctEl.textContent = 'LOADING // ' + String(pct).padStart(2, '0') + '%';
+                if (pct >= 100) clearInterval(iv);
+            }, 130);
+        })();
+
+        // Handle Loading Screen & Trigger Scramble
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const fxM = new TextScramble(document.getElementById('scramble-muhammad'));
+            const fxA = new TextScramble(document.getElementById('scramble-aqil'));
+            const fxI = new TextScramble(document.getElementById('scramble-ismail'));
+
+            setTimeout(() => {
+                loader.classList.add('loader-exit');
+                document.documentElement.classList.remove('loading');
+                reveal();
+                setTimeout(() => {
+                    fxM.setText('Muhammad');
+                    fxA.setText('Aqil');
+                    fxI.setText('Ismail');
+                }, 100);
+            }, 1800);
+        });
+
+        // Auto-update copyright year
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            const isOpen = !menu.classList.contains('hidden');
+            menu.classList.toggle('hidden');
+            icon.setAttribute('data-lucide', isOpen ? 'menu' : 'x');
+            lucide.createIcons();
+        }
+
+        // Reveal animations via IntersectionObserver (with staggered children)
+        const revealTargets = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.id === 'skills') animateSkillBars(entry.target);
+                    const children = entry.target.querySelectorAll('.reveal-child');
+                    children.forEach((child, i) => {
+                        setTimeout(() => child.classList.add('active'), i * 90);
+                    });
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealTargets.forEach(el => io.observe(el));
+        document.querySelectorAll('.reveal-child').forEach(el => el.classList.add('reveal'));
+
+        function reveal() {
+            // initial check handled by IntersectionObserver; kept for hero fade-in on load
+            document.getElementById('hero').classList.add('active');
+        }
+
+        function animateSkillBars(section) {
+            section.querySelectorAll('.skill-fill').forEach(bar => {
+                bar.style.width = bar.getAttribute('data-width');
+            });
+            section.querySelectorAll('.skill-num').forEach(num => {
+                const target = parseInt(num.getAttribute('data-target'), 10);
+                let current = 0;
+                const step = Math.max(1, Math.round(target / 40));
+                const iv = setInterval(() => {
+                    current = Math.min(target, current + step);
+                    num.textContent = current + '%';
+                    if (current >= target) clearInterval(iv);
+                }, 25);
+            });
+        }
+
+        // Smooth scrolling + active nav link tracking
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const offset = 80;
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = target.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+
+        const navLinks = document.querySelectorAll('[data-nav]');
+        const sections = ['hero','about','experience','education','skills','contact'].map(id => document.getElementById(id));
+        function updateActiveNav() {
+            let currentId = 'hero';
+            const scrollPos = window.scrollY + 120;
+            sections.forEach(sec => { if (sec && sec.offsetTop <= scrollPos) currentId = sec.id; });
+            navLinks.forEach(link => {
+                link.classList.toggle('is-active', link.getAttribute('href') === '#' + currentId);
+            });
+        }
+
+        // Scroll progress bar + active nav, throttled with rAF
+        const progressBar = document.getElementById('scroll-progress');
+        let ticking = false;
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const h = document.documentElement;
+                    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+                    progressBar.style.width = scrolled + '%';
+                    updateActiveNav();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        window.addEventListener('scroll', onScroll);
+        updateActiveNav();
+
+        // Spotlight cursor glow (desktop only, respects reduced motion)
+        if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+            const spotlight = document.getElementById('spotlight');
+            window.addEventListener('mousemove', (e) => {
+                spotlight.style.setProperty('--sx', e.clientX + 'px');
+                spotlight.style.setProperty('--sy', e.clientY + 'px');
+            });
+
+            // Magnetic buttons
+            document.querySelectorAll('[data-magnetic]').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+                });
+                btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0,0)'; });
+            });
+
+            // Tilt cards
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const px = (e.clientX - rect.left) / rect.width - 0.5;
+                    const py = (e.clientY - rect.top) / rect.height - 0.5;
+                    card.style.transform = `perspective(800px) rotateY(${px * 4}deg) rotateX(${-py * 4}deg) translateY(-2px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) translateY(0)';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
